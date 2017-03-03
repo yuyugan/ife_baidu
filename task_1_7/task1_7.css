@@ -1,0 +1,201 @@
+body{background-color:black;}
+#container{background-color:white;width:1280px;margin:auto;}
+header{height:60px;margin:0;}
+header div#theme{
+	display:inline-block;
+	color:#111;
+	font-size:30px;
+	width:200px;
+	padding:10px;
+	}
+header ul {list-style-type:none;display:inline-block;float:right;}
+header ul li{display:inline-block;width:80px;height:42px;text-align:center;}
+header ul li.selected {border-bottom:5px solid red;color:red;margin:0;}
+header ul li.selected a{color:red;}
+header ul li a{text-decoration:none;}
+#section1{
+	background:white url(images/kenan1.jpg) top left;
+	color:#ddd;
+	width:1280px;
+	height:720px;
+	margin:0;
+}
+#section1 div#desc{width:500px;height:500px;padding:380px 0 0 420px;text-align:center;}
+#section1 div#desc h1{font-size:40px;}
+#section1 div#desc p{font-size:25px;}
+#section1 div#desc #button1{
+	background-color:#d33;
+	color:white;
+	height:60px;
+	width:300px;
+	font-size:30px;
+	border:none;
+}
+#section2{display:flex;display:-webkit-flex;width:1280px;}
+#section2 div.flexItem{text-align:center;width:25%;margin:50px 0;color:gray;}
+#section3{height:250px;text-align:center;background-color:#eee;padding-top:100px;}
+#section3 h1{color:#aaa;font-size:40px;}
+#section4{
+	background:white url(images/bg1.jpg) top left;
+	height:200px;
+	text-align:center;
+	padding-top:90px;
+	}
+
+#section4 h1{font-size:20px;margin:0;color:black; }
+#section4 p{color:black;}
+#section4 select#selectAge,#section4 select#selectName, #submit{
+	height:40px;
+	width:200px;
+	font-size:20px;
+	margin-left:20px;
+	border:1px solid #d33;
+}
+#section4 form input#submit{background-color:#d33;border:none;}
+#section5{background-color:#eee;width:1280px;height:400px;}
+#section5 div#content{text-align:center;width:700px;float:right;margin:40px;}
+#section5 #theImage{
+	width:400px;
+	height:300px;
+	padding:10px;
+	border:1px solid black;
+	margin:40px 0 0 60px;
+}
+#section6{
+	background:white url(images/xinlan9_800.jpg) top right;
+	background-repeat:no-repeat;
+	width:1280px;
+	height:450px;
+	margin:0;
+}
+#section6 div.section6Content{
+	text-align:center;
+	width:350px;
+	padding:50px;
+}
+#section6 div.section6Content p{text-align:left;}
+#section6 div.section6Content h1 span{color:#d33;}
+#section6 div.section6Content #section6Btn{
+	color:#d33;
+	border: 1px solid #d33;
+	background-color:white;
+	width:120px;
+	height:36px;
+	}
+#section6 div.section6Content ul{list-style-type:none;padding:0;}
+#section6 div.section6Content ul li{
+	width:15px;
+	height:15px;
+	margin:5px;
+	border-radius:15px;
+	border:1px solid #aaa;
+	display:inline-block;
+}
+#section6 div.section6Content ul li#current{background-color:gray;}
+#section7{
+	background:white url(images/xinlan_480.jpg) top left;
+	background-repeat:no-repeat;
+	width:1280px;
+	height:600px;
+	}
+#section7 div#section7Content1{
+		width:400px;
+		height:600px;
+		text-align:center;
+		color:#333;
+		display:inline-block;
+		margin:0px 0 0 480px;
+		}
+#section7 div#section7Content1 #section7Content1Btn{
+	color:#d33;
+	border: 1px solid #d33;
+	background-color:white;
+	width:150px;
+	height:40px;
+	margin-top:10px;
+	}
+#section7 div#section7Content2{
+	width:395px;
+	height:600px;
+	text-align:center;
+	color:#ddd;
+	display:inline-block;
+	background-color:#d33;
+	}
+#section7 div#section7Content2 #section7Content2Btn{
+	color:#ddd;
+	border: 1px solid #ddd;
+	background-color:#d33;
+	width:150px;
+	height:40px;
+	margin-top:10px;
+	}
+#section7 div#section7Content1 hr,#section7 div#section7Content2 hr{width:50px;size:5px;}
+#section7 div#section7Content1 div,#section7 div#section7Content2 div{
+	height:300px;
+	margin-top:200px;
+}
+#section8{text-align:center;color:#333;height:500px;}
+#section8 div#cssTable{display:table;vertical-align:top;margin:30px auto;}
+#section8 div#cssTableRow{display:table-row;}
+#section8 div#section8Part2{
+	display:table-cell;
+	}
+#section8 div#section8Part2 div#contentPart1,#section8 div#section8Part2 div#contentPart2,#section8 div#section8Part2 div#contentPart3{
+	text-align:left;
+	width:400px;
+	height:90px;
+	overflow:auto;
+	margin:0px 0px 0 0px;
+}
+#section8 div#section8Part3{
+	width:600px;
+	height:400px;
+	margin:0px 0px 0 0;
+	display:table-cell;
+	}
+#section8 div#section8Part3 form input{
+	height:40px;
+	width:250px;
+	font-size:18px;
+	margin:0 10px 10px 10px;
+	background-color:#eee;
+	border:none;
+	color:#333;
+	}
+#section8 div#section8Part3 form textarea.textarea{
+	width:520px;
+	height:100px;
+	background-color:#eee;
+	border:none;
+	font-size:18px;
+	color:#333;
+	}
+#section8 div#section8Part3 form input.submit{width:525px;height:40px;}
+#section9 {height:300px;text-align:center;background-color:#222;color:white;}
+#section9 div#desc{padding:50px;}
+#section9 div#desc h1{font-size:30px;}
+#section9 div#desc p{font-size:10px;}
+#section9 div#desc input#email{
+	height:40px;
+	width:450px;
+	font-size:20px;
+	border:none;
+	margin:0;
+	box-sizing:border-box;
+}
+#section9 div#desc input#submit{
+	height:40px;
+	width:100px;
+	background-color:#aaa;
+	font-size:20px;
+	color:white;
+	margin:0px 0 0 -5px;
+	border:1px solid #aaa;
+	box-sizing:border-box;
+}
+#section9 div#desc div#otherOption{margin-top:20px;}
+#section9 div#desc div#otherOption a img{padding:0 10px;}
+#section10{height:80px;background-color:#111;color:white;}
+#section10 p{margin:0;padding:30px;}
+#section10 div a{float:right;width:200px;padding:30px;}
