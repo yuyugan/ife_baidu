@@ -1,6 +1,8 @@
 body { 
   min-width: 1280px;
-  background-color: #d1e9e9;
+  margin:0;
+  padding:0;
+  background-color: black;
 }
 #container {  
   width: 1280px;
@@ -9,9 +11,9 @@ body {
   background-color: white;
 }
 header {
-  height: 60px;
+  height: 60px; 
   margin: 0;
-  background-color: #6fb7b7;
+  background-color: white;
 }
 header div#theme {
   display: inline-block;
@@ -32,10 +34,10 @@ header ul li {
   text-align: center;
 }
 header ul li.selected { 
-  color: red;
   margin: 0;
   border-bottom: 5px solid red;
 }
+header ul a { color:#888;}
 header ul li.selected a { color: red; }
 header ul li a { text-decoration: none;}
 #section1{
@@ -65,6 +67,8 @@ header ul li a { text-decoration: none;}
   display: flex;
   display: -webkit-flex;
   width: 1280px;
+  border-left:1px solid #ddd; 
+  border-right:1px solid #ddd;
 }
 #section2 div.flexItem {  
   width: 25%; 
@@ -133,11 +137,13 @@ header ul li a { text-decoration: none;}
   width: 1280px;
   height: 450px;
   margin: 0;
+  
 }
 #section6 div.section6Content {
   text-align: center;
   width: 350px;
   padding: 50px;
+  border-left:1px solid #ddd; 
 }
 #section6 div.section6Content p { text-align:left; }
 #section6 div.section6Content h1 span { color:#d33;}
@@ -213,7 +219,8 @@ header ul li a { text-decoration: none;}
   height: 500px;
   width: 1280px;
   text-align: center;
-  color: #333;	
+  color: #333;
+  border:1px solid #ddd;  
 }
 #section8 div#cssTable {
   display: table;
