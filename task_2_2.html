@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 0202</title>
+  </head>
+<body>
+
+  <h3>污染城市列表</h3>
+  <ul id="aqi-list">
+<!--   
+    <li>第一名：福州（样例），10</li>
+    <li>第二名：福州（样例），10</li> -->
+  </ul>
+
+<script type="text/javascript">
+
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 70],
+  ["成都", 80],
+  ["西安", 100]
+];
+
+(function () {
+
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+  */
+  //selectData数组用来保存符合一定条件的城市数据
+  var selectData = new Array();
+  var ul = document.getElementById("aqi-list");
+  for (var i = 0; i < aqiData.length; i++){
+    if (aqiData[i][1] > 60){
+	  selectData.push(aqiData[i]);
+	}
+  }
+  var flag = true; // flag 用来记录是否有数据交换
+  var num;
+  //使用冒泡排序对空气质量大于60的城市数据进行从大到小排序
+  for (var m = 1; m < selectData.length && flag; m++){
+    flag = false;
+    for (var n = selectData.length-1; n >= m; n--){
+	  if (selectData[n][1] > selectData[n-1][1]){
+	    num = selectData[n];
+		selectData[n] = selectData[n-1];
+		selectData[n-1] = num;
+		flag = true;
+	  }
+	}
+  }
+  //将排序后的数据输出在页面  
+  for (var j = 0;j < selectData.length; j++){
+    li = document.createElement("li");
+	var str = j+1;
+    li.innerHTML = "第" + str + "名： " + selectData[j];
+    ul.appendChild(li);
+  }
+  
+})();
+
+</script>
+</body>
+</html>

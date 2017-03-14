@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 0205</title>
+	<style>
+	  div#queue{
+	    display: -webkit-flex;
+		display: flex;
+		-webkit-align-items: flex-end;
+		-webkit-flex-wrap: wrap;
+		height:120px;
+	  }
+	</style>
+  </head>
+<body>
+  <input id="input_num" type="text" name="num" placeholder = "请输入10-100之间的数字">
+  <button id="left_in">左侧入</button>
+  <button id="right_in">右侧入</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button id="left_out">左侧出</button>
+  <button id="right_out">右侧出</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button id="randomInit">随机初始化</button>
+  <button id="clear">清空</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button id="bubbleSort">冒泡排序（降）</button>
+  <button id="selectSort">简单选择排序（升）</button>
+  <button id="insertSort">直接插入排序（升）</button>
+  <div id="queue">
+    
+  </div>
+<script>
+/**********************
+**********左侧进*******
+***********************/
+function leftIn(){
+  var subDiv = creatSubDiv();
+  if( !isNaN(num.value) && num.value){
+    if( 10 <= num.value && num.value <= 100){
+      div.insertBefore(subDiv, div.firstChild);
+	  subDiv.style.height = num.value+"px";
+	  subDiv.innerHTML = num.value;
+	}
+	else{
+	  alert("请输入10-100之间的数字");
+	}
+  }
+}
+/*********************
+*********右侧进*******
+**********************/
+function rightIn(){
+  var subDiv = creatSubDiv();
+  if( !isNaN(num.value) && num.value){
+    if( 10 <= num.value && num.value <= 100){  
+      div.appendChild(subDiv);
+	  subDiv.style.height = num.value+"px";
+	  subDiv.innerHTML = num.value;
+	}
+	else{
+	  alert("请输入10-100之间的数字");
+	}
+  }
+}
+/*********************
+*********左侧出*******
+*********************/
+function leftOut(){
+  if (childList.length){
+    var firstChild = div.removeChild(div.firstChild);
+    alert("被删除元素的值是：" + firstChild.innerHTML);
+  }
+}
+/*********************
+*********右侧出*******
+**********************/
+function rightOut(){
+  if (childList.length){
+    var lastChild = div.removeChild(div.lastChild);
+    alert("被删除元素的值是：" + lastChild.innerHTML);
+  }
+}
+/***************************************************************
+**点击左侧进和右侧进调用的函数，用来在queue队列生成一个新的盒子*
+***************************************************************/
+function creatSubDiv() {
+  if (childList.length < 61){
+    var subDiv = document.createElement("div");
+    subDiv.style.display = "inline-block";
+    subDiv.style.width = "25px";
+    subDiv.style.color = "white";
+    subDiv.style.textAlign = "center";
+    subDiv.style.fontSize = "10px";
+    subDiv.style.margin = "10px 0 0 10px";
+    subDiv.style.backgroundColor = "red";
+    subDiv.onclick = function (){
+      var delChild = div.removeChild(subDiv);
+    };
+  }
+  else {
+    alert("最多只能输入60个数字！");
+  }
+  return subDiv;
+}
+/********************************
+*********随机地产生20个元素*******
+*********************************/
+function randomInit(){
+  if (clickState){
+    clear();
+    for (var i = 0; i < 20; i++){
+      var subDiv = document.createElement("div");
+      subDiv.style.display = "inline-block";
+      subDiv.style.width = "25px";
+      subDiv.style.color = "white";
+      subDiv.style.textAlign = "center";
+      subDiv.style.fontSize = "10px";
+      subDiv.style.margin = "10px 0 0 10px";
+      subDiv.style.backgroundColor = "red";
+      subDiv.onclick = function (){
+        var delChild = div.removeChild(subDiv);
+      };
+      var data = Math.floor(Math.random() * 90 + 10);
+      div.appendChild(subDiv);
+      subDiv.style.height = data+"px";
+      subDiv.innerHTML = data;
+    }   
+  }
+  else {alert("正在排序，不能进行初始化");}
+}
+/********************************
+*********清空所有元素************
+*********************************/
+function clear() {
+  while(childList.length > 0){   
+    var delChild = div.removeChild(div.lastChild);
+  }
+}
+/***************************************************************
+**点击冒泡排序按钮后执行的处理函数，把排序过程可视化*********
+***************************************************************/
+function bubbleSort() {  
+  var m = 1;
+  var n = childList.length-1;
+  if (clickState){
+    clickState = false;
+	//alert ("bubble: "+ clickState);
+    var time = setInterval(function(){
+    if (m < childList.length){
+	    if (n >= m){
+	      if (childList[n].style.height > childList[n-1].style.height){
+	  	  swap(childList[n-1],childList[n]);
+	  	}
+	  	n--; 
+	    }     
+	    else {
+	    m++;
+	    n = childList.length-1;
+	    }
+    }	  
+    else {
+	  clearInterval(time); 
+      clickState = true;	  
+      return;	
+	  }
+    }, 300);
+  }
+}
+
+/***************************************************************
+**点击简单选择排序按钮后执行的处理函数，把排序过程可视化*********
+***************************************************************/
+function selectSort(){
+  var childList = document.getElementById("queue").getElementsByTagName("div");
+  var i = 0;
+  var j = 0;
+  //alert ("select: "+ clickState);
+  if (clickState){
+    clickState = false;	
+    var time = setInterval(function(){
+      if (i < childList.length){
+	    var min = i;
+  	    for (j = i+1; j < childList.length;j++){
+	      if (childList[j].style.height < childList[min].style.height){
+	  	  min = j;
+	  	}
+	    }
+	    if (min != i){
+	  	swap(childList[min],childList[i]);
+	    }
+	    i++;
+	  }
+	  else{
+	    clearInterval(time);  
+        clickState = true;		
+        return;
+	  }
+    },800);
+  }
+ 
+}
+/***************************************************************
+**点击直接插入排序按钮后执行的处理函数，把排序过程可视化*********
+***************************************************************/
+function insertSort(){
+  var i = 1;
+  var j = i - 1;
+  if (clickState){
+    clickState = false;
+    var time = setInterval(function(){
+      if (i < childList.length){
+        if ( childList[i].innerHTML < childList[i-1].innerHTML ){
+	      var temp = childList[i].innerHTML;
+	  	  for (j = i-1; j >= 0 && childList[j].innerHTML > temp; j--){
+	  	    childList[j+1].innerHTML = childList[j].innerHTML;
+	  	    childList[j+1].style.height = childList[j].style.height;
+	  	  }
+	  	  childList[j+1].innerHTML = temp;
+	  	  childList[j+1].style.height = temp + "px";
+	  	  i++;
+	  	  j = i-1;
+	    }
+	    else {
+          i++;
+	      j = i-1;	  
+        }  
+	  }
+	  else {
+	    clearInterval(time); 
+        clickState = true; 		
+        return;  
+	  }
+    },1000);
+  }  
+}
+/***************************************************************
+********************交换两个元素的高度**************************
+***************************************************************/
+function swap(){
+  var height;
+  var temp;
+  var m = arguments[0];
+  var n = arguments[1];
+  height = m.style.height;
+  m.style.height = n.style.height;
+  n.style.height = height;
+  temp = m.innerHTML;
+  m.innerHTML = n.innerHTML;
+  n.innerHTML = temp;
+  return;
+}
+
+  var div = document.getElementById("queue");
+  var num = document.getElementById("input_num");
+  var childList = document.getElementById("queue").getElementsByTagName("div");
+  var clickState = true;  
+/***************************************************************
+********************程序的统一入口******************************
+***************************************************************/  
+function init(){
+  var btnLeftIn = document.getElementById("left_in");
+  var btnRightIn = document.getElementById("right_in");
+  var btnLeftOut = document.getElementById("left_out");
+  var btnRightOut = document.getElementById("right_out");
+  var btnRandomInit = document.getElementById("randomInit");
+  var btnClear = document.getElementById("clear");
+  var btnBubbleSort = document.getElementById("bubbleSort");
+  var btnSelectSort = document.getElementById("selectSort"); 
+  var btnInsertSort = document.getElementById("insertSort");
+  btnLeftIn.onclick = leftIn;
+  btnRightIn.onclick = rightIn;
+  btnLeftOut.onclick = leftOut;
+  btnRightOut.onclick = rightOut;
+  btnRandomInit.onclick = randomInit;
+  btnClear.onclick = clear;
+  btnBubbleSort.onclick = bubbleSort;
+  btnSelectSort.onclick = selectSort;
+  btnInsertSort.onclick = insertSort;
+  randomInit();
+}
+init();
+</script>
+</body>
+</html>

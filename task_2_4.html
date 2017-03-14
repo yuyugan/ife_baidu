@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 0204</title>
+  </head>
+<body>
+  <input id="input_num" type="text" name="num">
+  <button id="left_in">左侧入</button>
+  <button id="right_in">右侧入</button>
+  <button id="left_out">左侧出</button>
+  <button id="right_out">右侧出</button>
+  <div id="queue">
+    
+  </div>
+<script>
+/**********************
+**********左侧进*******
+***********************/
+function leftIn(){
+  var subDiv = creatSubDiv();
+  if( !isNaN(num.value) && num.value){
+    subDiv.innerHTML = num.value;
+    div.insertBefore(subDiv, div.firstChild);
+  }
+}
+/*********************
+*********右侧进*******
+**********************/
+function rightIn(){
+  var subDiv = creatSubDiv();
+  if( !isNaN(num.value) && num.value){
+    subDiv.innerHTML = num.value;
+    div.appendChild(subDiv);
+  }
+}
+/*********************
+*********左侧出*******
+*********************/
+function leftOut(){
+  if (div.childNodes.length){
+    var firstChild = div.removeChild(div.firstChild);
+    alert("被删除元素的值是：" + firstChild.innerHTML);
+  }
+}
+/*********************
+*********右侧出*******
+**********************/
+function rightOut(){
+  if (div.childNodes.length){
+    var lastChild = div.removeChild(div.lastChild);
+    alert("被删除元素的值是：" + lastChild.innerHTML);
+  }
+}
+/***************************************************************
+**点击左侧进和右侧进调用的函数，用来在queue队列生成一个新的盒子*
+***************************************************************/
+function creatSubDiv() {
+  var subDiv = document.createElement("div");
+  subDiv.style.display = "inline-block";
+  subDiv.style.color = "white";
+  subDiv.style.padding = "10px";
+  subDiv.style.margin = "10px 0 0 10px";
+  subDiv.style.backgroundColor = "red";
+  subDiv.onclick = function (){
+    var delChild = div.removeChild(subDiv);
+	alert("被删除元素的值是：" + delChild.innerHTML);
+  };
+  return subDiv;
+}
+
+  var div = document.getElementById("queue");
+  var num = document.getElementById("input_num");
+  
+function init(){
+  var btnLeftIn = document.getElementById("left_in");
+  var btnRightIn = document.getElementById("right_in");
+  var btnLeftOut = document.getElementById("left_out");
+  var btnRightOut = document.getElementById("right_out");
+  btnLeftIn.onclick = leftIn;
+  btnRightIn.onclick = rightIn;
+  btnLeftOut.onclick = leftOut;
+  btnRightOut.onclick = rightOut;
+}
+init();
+</script>
+</body>
+</html>
