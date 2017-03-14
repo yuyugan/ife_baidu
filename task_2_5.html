@@ -147,7 +147,12 @@ function bubbleSort() {
     if (m < childList.length){
 	    if (n >= m){
 	      if (childList[n].style.height > childList[n-1].style.height){
-	  	  swap(childList[n-1],childList[n]);
+	  	    var str = n;
+			swap(childList[n-1],childList[n]);
+		    setTimeout(function changeColor(){
+              childList[str-1].style.backgroundColor = "red";
+              childList[str].style.backgroundColor = "red";
+            },300);
 	  	}
 	  	n--; 
 	    }     
@@ -161,7 +166,7 @@ function bubbleSort() {
       clickState = true;	  
       return;	
 	  }
-    }, 300);
+    }, 500);
   }
 }
 
@@ -184,7 +189,12 @@ function selectSort(){
 	  	}
 	    }
 	    if (min != i){
+		var str = i;
 	  	swap(childList[min],childList[i]);
+        setTimeout(function changeColor(){
+          childList[min].style.backgroundColor = "red";
+          childList[str].style.backgroundColor = "red";
+        },300);		
 	    }
 	    i++;
 	  }
@@ -239,6 +249,8 @@ function swap(){
   var temp;
   var m = arguments[0];
   var n = arguments[1];
+  m.style.backgroundColor = "blue";
+  n.style.backgroundColor = "blue";
   height = m.style.height;
   m.style.height = n.style.height;
   n.style.height = height;
@@ -246,6 +258,12 @@ function swap(){
   m.innerHTML = n.innerHTML;
   n.innerHTML = temp;
   return;
+}
+
+function changeColor(){
+ arguments[0].style.backgroundColor = "red";
+ arguments[1].style.backgroundColor = "red";
+ return;
 }
 
   var div = document.getElementById("queue");
