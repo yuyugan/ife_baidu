@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+**基于任务四进行升级将新元素输入框从input改为textarea
+((允许一次批量输入多个内容，格式可以为数字、中文、英文等，可以通过
+用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）
+等符号作为不同内容的间隔
+**增加一个查询文本输入框，和一个查询按钮，当点击查询时，将查询词在
+各个元素内容中做模糊匹配，将匹配到的内容进行特殊标识，如文字颜色等。
+举例，内容中有abcd，查询词为ab或bc，则该内容需要标识  -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 0206</title>
+  </head>
+<body>
+  <textarea id="input_text" cols="12" rows="5"></textarea>
+  <button id="left_in">左侧入</button>
+  <button id="right_in">右侧入</button>
+  <button id="left_out">左侧出</button>
+  <button id="right_out">右侧出</button>
+  <input id="searchText" type="text" name="input">
+  <button id="btnSearch">查询</button>
+  <div id="queue">
+    
+  </div>
+<script>
+/**********************
+**********左侧进*******
+***********************/
+function leftIn(){ 
+  var arrInput = numOfInputArray();
+  //alert(arrInput);
+  for(var i = 0;i < arrInput.length;i++){
+    var subDiv = creatSubDiv();
+    subDiv.innerHTML = arrInput[i];
+    div.insertBefore(subDiv, div.firstChild);
+  }
+}
+/*********************
+*********右侧进*******
+**********************/
+function rightIn(){
+  var arrInput = numOfInputArray();
+  for(var i = 0;i < arrInput.length;i++){
+    var subDiv = creatSubDiv();
+    subDiv.innerHTML = arrInput[i];
+    div.appendChild(subDiv);
+  }
+}
+/*********************
+*********左侧出*******
+*********************/
+function leftOut(){
+  if (div.childNodes.length){
+    var firstChild = div.removeChild(div.firstChild);
+    alert("被删除元素的值是：" + firstChild.innerHTML);
+  }
+}
+/*********************
+*********右侧出*******
+**********************/
+function rightOut(){
+  if (div.childNodes.length){
+    var lastChild = div.removeChild(div.lastChild);
+    alert("被删除元素的值是：" + lastChild.innerHTML);
+  }
+}
+/***********************************
+*********点击查询后的处理函数*******
+************************************/
+function search(){
+  var text = document.getElementById("searchText").value;  
+  for (var i = 0; i < div.children.length; i++){
+    var reg = new RegExp(text);
+	if(reg.test(div.children[i].innerHTML)){
+	  div.children[i].style.color = "black";
+	}
+  }
+}
+/***************************************************************
+**点击左侧进和右侧进调用的函数，用来在queue队列生成一个新的盒子*
+***************************************************************/
+function creatSubDiv() {
+  var subDiv = document.createElement("div");
+  subDiv.style.display = "inline-block";
+  subDiv.style.color = "white";
+  subDiv.style.padding = "10px";
+  subDiv.style.margin = "10px 0 0 10px";
+  subDiv.style.backgroundColor = "red";
+  subDiv.onclick = function (){
+    var delChild = div.removeChild(subDiv);
+	alert("被删除元素的值是：" + delChild.innerHTML);
+  };
+  return subDiv;
+}
+/**************************************************************
+**判断textarea区域输入了多少个元素，并把元素放在数组里返回*****
+***************************************************************/
+function numOfInputArray(){
+    var arrInput = input.value.split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/).filter(function(e) {
+          if (e != null && e.length > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+	return arrInput;
+}
+
+  var div = document.getElementById("queue");
+  var input = document.getElementById("input_text");
+  
+function init(){
+  var btnLeftIn = document.getElementById("left_in");
+  var btnRightIn = document.getElementById("right_in");
+  var btnLeftOut = document.getElementById("left_out");
+  var btnRightOut = document.getElementById("right_out");
+  var btnSearch = document.getElementById("btnSearch");
+  btnLeftIn.onclick = leftIn;
+  btnRightIn.onclick = rightIn;
+  btnLeftOut.onclick = leftOut;
+  btnRightOut.onclick = rightOut;
+  btnSearch.onclick = search;
+}
+init();
+</script>
+</body>
+</html>
